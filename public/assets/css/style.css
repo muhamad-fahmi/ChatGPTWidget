@@ -1,0 +1,68 @@
+.bubble-chat-button, .bubble-button-img {
+    width: 3rem;
+    cursor: pointer;
+    border-radius: 50px;
+}
+.bubble-chat-popup {
+    height: 30rem;
+}
+.bubble-chat-body {
+    height: 77%;
+}
+/* .msj:before{
+    width: 0;
+    height: 0;
+    content:"";
+    top:-5px;
+    left:-14px;
+    position:relative;
+    border-style: solid;
+    border-width: 0 13px 13px 0;
+    border-color: transparent #ffffff transparent transparent;
+} */
+.bubble-chat-popup:after{
+    width: 0;
+    height: 0;
+    content:"";
+    top: -8px;
+    right: -312px;
+    position:relative;
+    border-style: solid;
+    border-width: 13px 13px 13px 0;
+    border-color: #007bff transparent transparent transparent;
+}
+.bot-picture img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50px;
+}
+.bot-close button {
+    background-color: transparent;
+    border: 0;
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+}
+.bot-close i {
+    font-size: 10px;
+}
+
+/* messages styles */
+img.img-avatar-chat {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50px;
+}
+ul {
+    width:100%;
+    height: 100%;
+    list-style-type: none;
+    padding:18px;
+    bottom:47px;
+    display:flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.msg-content {
+    font-size: 13px;
+}
