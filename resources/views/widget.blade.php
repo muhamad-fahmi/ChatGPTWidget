@@ -1,9 +1,25 @@
 @extends('layouts.app')
 
+@push('styles')
+    <style>
+        .bubble-chat-popup:after{
+            width: 0;
+            height: 0;
+            content:"";
+            bottom: 0;
+            right: -13px;
+            position: fixed;
+            border-style: solid;
+            border-width: 15px 15px 15px 0;
+            border-color: {{ $theme_color ?? '#0b91f6' }} transparent transparent transparent;
+        }
+    </style>
+@endpush
+
 @section('contents')
     <div class="bubble-chat-widget d-flex align-items-end fixed-bottom pr-4 pb-4">
 
-        <div class="bubble-chat-popup shadow w-25 bg-primary ml-auto rounded-top rounded-left">
+        <div id="bubble_chat_popup" class="bubble-chat-popup shadow w-25 ml-auto rounded-top rounded-left animate__animated"  style="background-color:{{ $theme_color ?? '#0b91f6' }}">
             <div class="bubble-chat-header p-2">
                 <div class="bot-profile d-flex flex-col align-items-center">
                     <div class="bot-picture">
@@ -15,12 +31,23 @@
                     <div class="bot-name ml-2 text-light">
                         <b>ChatGPT</b>
                     </div>
-                    <div class="bot-close ml-auto">
-                        <button class="d-flex align-items-center">
+                    <div class="bot-close ml-auto d-flex">
+                        <button class="d-flex align-items-center mr-2" id="btn_expand_chat_popup">
+                            <i class="fas fa-expand text-light"></i>
+                        </button>
+                        <button class="d-flex align-items-center mr-2" id="btn_compress_chat_popup">
+                            <i class="fas fa-compress text-light"></i>
+                        </button>
+                        <button class="d-flex align-items-center" id="btn_close_chat_popup">
                             <i class="fas fa-times text-center text-light"></i>
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="credit-to p-1 overflow-auto">
+                <small>
+                    <center>Chat GPT Bot Widget By <a href="https://muhamad-fahmi.github.io">Muhamad Fahmi</a></center>
+                </small>
             </div>
             <div class="bubble-chat-body bg-light p-1 overflow-auto">
                 <ul id="messages"></ul>
@@ -28,15 +55,15 @@
             <div class="bubble-chat-footer p-2">
                 <div class="d-flex flex-col">
                     <input type="text" class="form-control" id="message_text" required>
-                    <button class="ml-2 btn btn-primary" id="btn_send_message">Send</button>
+                    <button class="ml-2 btn text-light" id="btn_send_message" style="background-color:{{ $button_color ?? '#0b91f6' }}">Send</button>
                 </div>
             </div>
         </div>
 
         <!-- button chat-->
-        <div class="bubble-chat-button ml-4 shadow">
+        <div id="bubble_chat_button" class="bubble-chat-button ml-auto shadow" style="background-color:{{ $button_color ?? '#0b91f6' }}">
             <img
-                src="{{ asset('assets/images/avatar/avatar-buble.jpg') }}"
+                src="{{ asset('assets/images/avatar/chat-bubble.png') }}"
                 alt="chat gpt widget button"
                 class="bubble-button-img rounded-full">
         </div>
