@@ -11,6 +11,12 @@ use Tectalic\OpenAi\Models\Completions\CreateRequest;
 class BotController extends Controller
 {
 
+    public function widget(Request $request) {
+        $button_color = urldecode($request->button_color);
+        $theme_color = urldecode($request->theme_color);
+        return view('widget', compact('button_color', 'theme_color'));
+    }
+
     public function text_completion(Request $request){
         $openaiClient = Manager::build(new \GuzzleHttp\Client(), new Authentication(env('OPENAI_API_KEY')));
 
