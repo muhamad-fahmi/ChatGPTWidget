@@ -52,11 +52,24 @@
             <div class="bubble-chat-body bg-light p-1 overflow-auto">
                 <ul id="messages"></ul>
             </div>
-            <div class="bubble-chat-footer p-2">
-                <div class="d-flex flex-col">
-                    <input type="text" class="form-control" id="message_text" required>
-                    <button class="ml-2 btn text-light" id="btn_send_message" style="background-color:{{ $button_color ?? '#0b91f6' }}">Send</button>
+            <div class="bubble-chat-footer p-2 d-flex">
+                <div class="btn-group mr-2">
+                    <button type="button" class="btn dropdown-toggle text-light" data-toggle="dropdown" aria-expanded="false" style="background-color:{{ $button_color ?? '#0b91f6' }}">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#" id="text_completion">Text Completion (default)</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" id="code_completion">Code Completion</a>
+                    </div>
                 </div>
+
+                <form onSubmit="return false;" class="w-100">
+                    <div class="d-flex flex-col">
+                            <input type="text" class="form-control w-100" id="message_text" placeholder="Type a message" autocomplete="off">
+                            <button class="ml-2 btn text-light" id="btn_send_message" style="background-color:{{ $button_color ?? '#0b91f6' }}">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
 
