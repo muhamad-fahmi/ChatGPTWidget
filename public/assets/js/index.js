@@ -1,4 +1,36 @@
 $(document).ready(() => {
+    $("#bubble_chat_button").click((e) => {
+        $("#bubble_chat_popup")
+            .show()
+            .removeClass("animate__fadeOutDown")
+            .removeClass("animate__bounceOut")
+            .addClass("animate__bounceIn")
+            .addClass("animate__fadeInUp")
+            .addClass("popup-opened");
+    });
+
+    $("#btn_close_chat_popup").click((e) => {
+        $("#bubble_chat_popup")
+            .show()
+            .removeClass("animate__bounceIn")
+            .removeClass("animate__fadeInUp")
+            .addClass("animate__fadeOutDown")
+            .addClass("animate__bounceOut")
+            .removeClass("popup-opened");
+    });
+
+    $("#btn_expand_chat_popup").click((e) => {
+        // $("#btn_compress_chat_popup").show();
+        // $("#btn_expand_chat_popup").hide();
+        $("#bubble_chat_popup").show().removeClass("w-25").addClass("w-75");
+    });
+
+    $("#btn_compress_chat_popup").click((e) => {
+        // $("#btn_compress_chat_popup").hide();
+        // $("#btn_expand_chat_popup").show();
+        $("#bubble_chat_popup").show().removeClass("w-75").addClass("w-25");
+    });
+
     $("#btn_send_message").click((e) => {
         const message = $("#message_text").val();
         if (message.length > 0) {
@@ -42,7 +74,7 @@ $(document).ready(() => {
         if (who == "me") {
             control = `<li class="w-100 mt-3">
                 <div class="d-flex flex-row">
-                    <div class="msg-content bg-primary rounded shadow-sm p-1 text-light mr-2 w-100">
+                    <div class="msg-content rounded shadow-sm p-1 mr-2 w-100" style="background-color:lightgray">
                        <p class="my-0 ml-2">${text}</p>
                     </div>
                     <img src="../assets/images/avatar/avatar-user.png" class="rounded-full img-avatar-chat">
