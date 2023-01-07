@@ -1,4 +1,13 @@
 $(document).ready(() => {
+    var hp = window.matchMedia("(max-width: 400px)");
+    var laptop = window.matchMedia("(min-width: 768px)");
+
+    hp.addListener(handleHP);
+    handleHP(hp, "uni");
+
+    laptop.addListener(handleLaptop);
+    handleLaptop(laptop, "uni");
+
     $("#bubble_chat_button").click((e) => {
         $("#bubble_chat_popup")
             .show()
@@ -22,18 +31,107 @@ $(document).ready(() => {
     $("#btn_expand_chat_popup").click((e) => {
         // $("#btn_compress_chat_popup").show();
         // $("#btn_expand_chat_popup").hide();
-        $("#bubble_chat_popup").show().removeClass("w-25").addClass("w-75");
+        var hp = window.matchMedia("(max-width: 400px)");
+        var laptop = window.matchMedia("(min-width: 768px)");
+
+        hp.addListener(handleHP);
+        handleHP(hp, "expand");
+
+        laptop.addListener(handleLaptop);
+        handleLaptop(laptop, "expand");
     });
+
+    function handleHP(e, type) {
+        if (e.matches) {
+            if (type == "expand") {
+                $("#bubble_chat_popup").show().addClass("hp");
+                if (screenfull.isEnabled) {
+                    screenfull.on("change", () => {
+                        $("#bubble_chat_popup")
+                            .removeClass("fullscreen-laptop")
+                            .addClass("fullscreen-hp");
+                    });
+                    screenfull.request($("#bubble_chat_popup")[0]);
+                }
+            } else if (type == "compress") {
+                $("#bubble_chat_popup").show().addClass("w-75");
+
+                if (screenfull.isEnabled) {
+                    screenfull.on("change", () => {
+                        $("#bubble_chat_popup")
+                            .removeClass("fullscreen-laptop")
+                            .removeClass("fullscreen-hp");
+                    });
+                    screenfull.exit($("#bubble_chat_popup")[0]);
+                }
+            } else {
+                $("#bubble_chat_popup").addClass("hp");
+            }
+        }
+    }
+
+    function handleLaptop(e, type) {
+        if (e.matches) {
+            if (type == "expand") {
+                $("#bubble_chat_popup").show().removeClass("hp");
+                // openFullscreen($("#bubble_chat_popup"));
+                if (screenfull.isEnabled) {
+                    screenfull.on("change", () => {
+                        $("#bubble_chat_popup")
+                            .removeClass("fullscreen-hp")
+                            .addClass("fullscreen-laptop");
+                    });
+                    screenfull.request($("#bubble_chat_popup")[0]);
+                }
+            } else if (type == "compress") {
+                $("#bubble_chat_popup").show().removeClass("hp");
+                if (screenfull.isEnabled) {
+                    screenfull.on("change", () => {
+                        $("#bubble_chat_popup")
+                            .removeClass("fullscreen-laptop")
+                            .removeClass("fullscreen-hp");
+                    });
+                    screenfull.exit($("#bubble_chat_popup")[0]);
+                }
+            } else {
+                $("#bubble_chat_popup").removeClass("hp");
+            }
+        }
+    }
 
     $("#btn_compress_chat_popup").click((e) => {
         // $("#btn_compress_chat_popup").hide();
         // $("#btn_expand_chat_popup").show();
-        $("#bubble_chat_popup").show().removeClass("w-75").addClass("w-25");
+        var hp = window.matchMedia("(max-width: 400px)");
+        var laptop = window.matchMedia("(min-width: 768px)");
+
+        hp.addListener(handleHP);
+        handleHP(hp, "compress");
+
+        laptop.addListener(handleLaptop);
+        handleLaptop(laptop, "compress");
     });
 
     $("#btn_send_message").click((e) => {
         const message = $("#message_text").val();
-        if (message.length > 0) {
+
+        //generate code req
+        const code = "";
+        const intruction = "";
+
+        if (code.length > 0) {
+            insertChat("me", code);
+            $(".msg-content .text-message").addClass("code-text");
+            code = $("#message_text.code-text").val();
+            insertChat("bot", "Send the intruction :", 1000);
+            $("#message_text").removeClass("code").addClass("intruction");
+        } else if (intruction.length > 0) {
+            // if () {
+            intruction = $("#message_text.intruction").val();
+            console.log(code);
+            console.log(intruction);
+            // }
+        } else if (message.length > 0) {
             insertChat("me", message);
             $.post(
                 route("text_completion"),
@@ -55,6 +153,7 @@ $(document).ready(() => {
                 }
             );
         }
+
         $("#message_text").val("");
     });
 
@@ -113,7 +212,7 @@ $(document).ready(() => {
             control = `<li class="w-100 mt-3">
                 <div class="d-flex flex-row float-right">
                     <div class="msg-content rounded shadow-sm px-2 mr-2 w-auto pt-3 pb-1" style="background-color:lightgray">
-                       <p class="my-0 ml-2">${text}</p>
+                       <p class="my-0 ml-2 text-message">${text}</p>
                        <p class="mt-3 mr-2 text-right mb-0"><small>${date}</small></p>
                     </div>
                     <img src="../assets/images/avatar/avatar-user.png" class="rounded-full img-avatar-chat">
@@ -188,6 +287,7 @@ $(document).ready(() => {
             $("#btn_send_message")
                 .removeClass("generate-code")
                 .addClass("modify-code");
+
             insertChat("me", "Modify Code");
 
             insertChat("bot", "Send the code :", 2000);

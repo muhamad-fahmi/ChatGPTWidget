@@ -1,5 +1,7 @@
 body{
     background-color: transparent !important;
+    margin: 0;
+    width: auto !important;
 }
 button {
     cursor: pointer;
@@ -9,6 +11,7 @@ button {
     width: 3rem;
     cursor: pointer;
     border-radius: 50px;
+    z-index: 9999999;
 }
 .bubble-chat-popup {
     height: 30rem;
@@ -16,12 +19,14 @@ button {
     right: 6rem;
 }
 .bubble-chat-body {
-    height: 71.5%;
+    height: 65.5%;
+}
+#bubble_chat_popup.fullscreen-laptop .bubble-chat-body{
+    height: 81%;
 }
 .credit-to {
     background-color: lightgray;
 }
-
 
 .bot-picture img {
     width: 2.5rem;
@@ -73,4 +78,47 @@ ul#messages {
     color: #505050 !important;
     text-decoration: none;
     background-color: #f8f9fa !important;
-  }
+
+}
+
+@media only screen and (max-width: 400px) {
+    .bubble-chat-popup {
+        height: 30rem;
+        position: fixed;
+        right: 10px;
+        bottom: 6rem;
+    }
+    .bubble-chat-popup.hp.w-25 {
+        width: 85% !important;
+    }
+    .bubble-chat-popup.hp.w-100 {
+        width: 95% !important;
+        height: 43rem;
+    }
+    .bubble-chat-popup.hp.w-100 .bubble-chat-body {
+        height: 80%;
+    }
+    .bubble-chat-popup.hp:after{
+        bottom: -27px !important;
+        right: 23px !important;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .bubble-chat-popup {
+        height: 25rem;
+        position: fixed;
+        right: 10px;
+        bottom: 6rem;
+    }
+    .bubble-chat-popup.w-25 {
+        width: 20rem !important;
+    }
+    .bubble-chat-popup:after{
+        bottom: -27px !important;
+        right: 23px !important;
+    }
+    #bubble_chat_popup.fullscreen-hp .bubble-chat-body{
+        height: 81%;
+    }
+}
