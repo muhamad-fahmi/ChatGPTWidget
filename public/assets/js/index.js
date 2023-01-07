@@ -20,25 +20,36 @@ $(document).ready(() => {
 
     $("#btn_close_chat_popup").click((e) => {
         $("#bubble_chat_popup")
-            .show()
             .removeClass("animate__bounceIn")
             .removeClass("animate__fadeInUp")
             .addClass("animate__fadeOutDown")
             .addClass("animate__bounceOut")
-            .removeClass("popup-opened");
+            .removeClass("popup-opened")
+            .hide();
+        if (screenfull.isEnabled) {
+            screenfull.on("change", () => {
+                alert("kkkkk");
+                $("#bubble_chat_popup")
+                    .removeClass("fullscreen-hp")
+                    .removeClass("fullscreen-laptop")
+                    .removeClass("animate__fadeOutDown")
+                    .removeClass("animate__bounceOut");
+                screenfull.exit($("#bubble_chat_popup")[0]);
+            });
+        }
     });
 
     $("#btn_expand_chat_popup").click((e) => {
         // $("#btn_compress_chat_popup").show();
         // $("#btn_expand_chat_popup").hide();
         var hp = window.matchMedia("(max-width: 450px)");
-        var laptop = window.matchMedia("(min-width: 768px)");
-
-        hp.addListener(handleHP);
-        handleHP(hp, "expand");
+        var laptop = window.matchMedia("(min-width: 760px)");
 
         laptop.addListener(handleLaptop);
         handleLaptop(laptop, "expand");
+
+        hp.addListener(handleHP);
+        handleHP(hp, "expand");
     });
 
     function handleHP(e, type) {
@@ -85,11 +96,14 @@ $(document).ready(() => {
                 }
             } else if (type == "compress") {
                 $("#bubble_chat_popup").show().removeClass("hp");
+                $("#bubble_chat_popup")
+                    .removeClass("fullscreen-laptop")
+                    .removeClass("fullscreen-hp");
                 if (screenfull.isEnabled) {
                     screenfull.on("change", () => {
                         $("#bubble_chat_popup")
-                            .removeClass("fullscreen-laptop")
-                            .removeClass("fullscreen-hp");
+                            .removeClass("fullscreen-hp")
+                            .removeClass("fullscreen-laptop");
                     });
                     screenfull.exit($("#bubble_chat_popup")[0]);
                 }
