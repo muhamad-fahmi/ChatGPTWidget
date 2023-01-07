@@ -27,15 +27,12 @@ $(document).ready(() => {
             .removeClass("popup-opened")
             .hide();
         if (screenfull.isEnabled) {
-            screenfull.on("change", () => {
-                alert("kkkkk");
-                $("#bubble_chat_popup")
-                    .removeClass("fullscreen-hp")
-                    .removeClass("fullscreen-laptop")
-                    .removeClass("animate__fadeOutDown")
-                    .removeClass("animate__bounceOut");
-                screenfull.exit($("#bubble_chat_popup")[0]);
-            });
+            $("#bubble_chat_popup")
+                .removeClass("fullscreen-hp")
+                .removeClass("fullscreen-laptop")
+                .addClass("animate__fadeOutDown")
+                .addClass("animate__bounceOut");
+            screenfull.exit($("#bubble_chat_popup")[0]);
         }
     });
 
