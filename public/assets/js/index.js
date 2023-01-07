@@ -19,21 +19,23 @@ $(document).ready(() => {
     });
 
     $("#btn_close_chat_popup").click((e) => {
+        if (screenfull.isEnabled) {
+            screenfull.on("change", () => {
+                $("#bubble_chat_popup")
+                    .removeClass("fullscreen-hp")
+                    .removeClass("fullscreen-laptop");
+            });
+            screenfull.exit($("#bubble_chat_popup")[0]);
+        }
         $("#bubble_chat_popup")
+            .removeClass("fullscreen-hp")
+            .removeClass("fullscreen-laptop")
             .removeClass("animate__bounceIn")
             .removeClass("animate__fadeInUp")
             .addClass("animate__fadeOutDown")
             .addClass("animate__bounceOut")
             .removeClass("popup-opened")
-            .hide();
-        if (screenfull.isEnabled) {
-            $("#bubble_chat_popup")
-                .removeClass("fullscreen-hp")
-                .removeClass("fullscreen-laptop")
-                .addClass("animate__fadeOutDown")
-                .addClass("animate__bounceOut");
-            screenfull.exit($("#bubble_chat_popup")[0]);
-        }
+            .show();
     });
 
     $("#btn_expand_chat_popup").click((e) => {
