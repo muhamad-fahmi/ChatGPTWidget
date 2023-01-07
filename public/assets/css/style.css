@@ -72,7 +72,7 @@ ul#messages {
 }
 .bubble-chat-footer .dropdown-menu {
     font-size: 12px;
-    top: -18px !important;
+    top: -142px !important
 }
 .bubble-chat-footer .dropdown-item:focus, .dropdown-item:hover {
     color: #505050 !important;
@@ -119,6 +119,6 @@ ul#messages {
         right: 23px !important;
     }
     #bubble_chat_popup.fullscreen-hp .bubble-chat-body{
-        height: 81%;
+        height: 83.5%;
     }
 }

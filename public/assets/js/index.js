@@ -31,7 +31,7 @@ $(document).ready(() => {
     $("#btn_expand_chat_popup").click((e) => {
         // $("#btn_compress_chat_popup").show();
         // $("#btn_expand_chat_popup").hide();
-        var hp = window.matchMedia("(max-width: 400px)");
+        var hp = window.matchMedia("(max-width: 450px)");
         var laptop = window.matchMedia("(min-width: 768px)");
 
         hp.addListener(handleHP);
@@ -257,7 +257,7 @@ $(document).ready(() => {
         var date = formatAMPM(new Date());
         var button = `<li class="w-100 mt-3">
                 <div class="d-flex flex-row">
-                    <img src="../assets/images/avatar/avatar.gif" class="rounded-full img-avatar-chat">
+                    <img src="assets/images/avatar/avatar.gif" class="rounded-full img-avatar-chat">
                     <div class="msg-content bg-light rounded px-2 ml-2 pt-3  pb-1 w-auto shadow-sm">
                         <p class="mb-2">Choose below options!</p>
                         <div class="list-group mb-2 list-group-flush">
