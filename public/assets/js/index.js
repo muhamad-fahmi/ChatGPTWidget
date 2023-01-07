@@ -215,14 +215,14 @@ $(document).ready(() => {
                        <p class="my-0 ml-2 text-message">${text}</p>
                        <p class="mt-3 mr-2 text-right mb-0"><small>${date}</small></p>
                     </div>
-                    <img src="{{ asset('assets/images/avatar/avatar-user.png') }}" class="rounded-full img-avatar-chat">
+                    <img src="assets/images/avatar/avatar-user.png" class="rounded-full img-avatar-chat">
                 </div>
             </li>`;
         } else {
             if (mode != "text_completion") {
                 control = `<li class="w-100 mt-3">
                     <div class="d-flex flex-row">
-                        <img src="{{ asset('assets/images/avatar/avatar.gif) }}'" class="rounded-full img-avatar-chat">
+                        <img src="assets/images/avatar/avatar.gif" class="rounded-full img-avatar-chat">
                         <div class="msg-content bg-light rounded px-2 ml-2 pt-3  pb-1 w-auto shadow-sm">
                             <div class="p-3 rounded" style="background-color: lightgray">
                                 <span><i class="fas fa-reply mr-2 text-secondary" style="font-size:10px;"></i></span> ${reply.slice(
@@ -239,7 +239,7 @@ $(document).ready(() => {
             } else {
                 control = `<li class="w-100 mt-3">
                     <div class="d-flex flex-row">
-                        <img src="{{ asset('assets/images/avatar/avatar.gif') }}" class="rounded-full img-avatar-chat">
+                        <img src="assets/images/avatar/avatar.gif" class="rounded-full img-avatar-chat">
                         <div class="msg-content bg-light rounded px-2 ml-2 pt-3  pb-1 w-auto shadow-sm">
                             <p class="my-0 ml-2">${text}</p>
                             <p class="mt-3 mr-2 text-right mb-0"><small>${date}</small></p>
