@@ -23,3 +23,11 @@ iframe#widget_chat_gpt {
     border: 0px !important;
 }
 ```
+
+You can change theme and button color by change url parameter ``` button_color= ``` and ``` theme_color= ``` in iframe with hexa code color [Get Hexa Color Code](https://www.color-hex.com/) and encode it with url encoder [Encode Url](https://www.urlencoder.org/)
+
+Example change :
+
+```
+https://devlab.sanfasteknovatif.com/ChatGPTWidget/public/widget?button_color=%234c0000&theme_color=%23990000
+```
