@@ -31,3 +31,8 @@ Example change :
 ```
 https://devlab.sanfasteknovatif.com/ChatGPTWidget/public/widget?button_color=%234c0000&theme_color=%23990000
 ```
+
+Example view :
+
+![image](https://user-images.githubusercontent.com/60981281/211178367-642e849e-48ec-4729-a0c4-431c37f545e2.png)
+
