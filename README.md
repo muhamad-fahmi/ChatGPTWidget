@@ -1,4 +1,4 @@
-#ChatGPT Web Widget (By Muhamad Fahmi)
+# ChatGPT Web Widget (By Muhamad Fahmi)
 This Chat GPT simple implementation to web widget.
 you can add this wodget to your website by adding this iframe codes to your web page 
 
